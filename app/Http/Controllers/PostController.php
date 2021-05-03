@@ -12,4 +12,8 @@ class PostController extends Controller
         # viewのメソッドであるwithを用いて、値を渡す。[]内は連想配列。
         return view('index')->with(['posts' => $post->getPaginateByLimit()]);
     }
+    public function show(Post $post)
+    {
+        return view('show')->with(['post' => $post]);
+    }
 }
