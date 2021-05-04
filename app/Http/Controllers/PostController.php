@@ -21,15 +21,22 @@ class PostController extends Controller
     {
         return view('create');
     }
-    public function edit(Post $post)
-    {
-        return view('edit')->with(['post' => $post]);
-    }
     public function store(Post $post, PostRequest $request)
     {
         // dd($request->all());
         $input = $request['post'];
         $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
+    }
+    public function edit(Post $post)
+    {
+        return view('edit')->with(['post' => $post]);
+    }
+    // ユーザーからの入力を受け取る場合は、必ずRequestを使用する
+    public function update(PostRequest $request, Post $post)
+    {
+        $input_post = $request['post'];
+        $post->fill($input_post)->save();
         return redirect('/posts/' . $post->id);
     }
 }
