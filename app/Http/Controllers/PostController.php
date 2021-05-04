@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 // クラス使用のための宣言
 use App\Post;
-use Illuminate\Http\Request; //ユーザーからの入力を使用するときに使うクラス
+use App\Http\Requests\PostRequest; //ユーザーからの入力を使用するときに使うクラス
 
 class PostController extends Controller
 {
@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         return view('edit')->with(['post' => $post]);
     }
-    public function store(Post $post, Request $request)
+    public function store(Post $post, PostRequest $request)
     {
         // dd($request->all());
         $input = $request['post'];
