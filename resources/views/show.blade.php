@@ -12,6 +12,7 @@
     <body>
         <h1>Blog Name</h1>
         <div class='post'>
+            <p class='edit'>[<a href='/posts/edit/{{ $post->id }}'>edit</a>]</p>
             <h2 class='title'>{{ $post->title }}</h2>
             <p class='body'>{{ $post->body }}</p>
             <p class='updated_at'>{{ $post->updated_at }}</p>
