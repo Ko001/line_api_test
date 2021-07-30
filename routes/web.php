@@ -29,3 +29,7 @@ Route::post('/posts', 'PostController@store');
 Route::delete('posts/{post}', 'PostController@destroy');
 
 // Route::get('/posts', 'PostController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/webhook','ApiController@webhook');
