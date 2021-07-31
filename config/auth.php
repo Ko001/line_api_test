@@ -113,5 +113,8 @@ return [
     */
 
     'password_timeout' => 10800,
+    
+    'line-api-key' => env("LINE_API_KEY", "HOGE"),
+    'channel-secret' => env("LINE_CHANNEL_SECRET", "FUGA"),
 
 ];
