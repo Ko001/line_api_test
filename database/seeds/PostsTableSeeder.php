@@ -12,8 +12,8 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('posts')->truncate();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::table('posts')->truncate();
          DB::table('posts')->insert([[
             'title' => 'title1',
             'body' => 'This is body1',],
@@ -21,6 +21,6 @@ class PostsTableSeeder extends Seeder
             'body' => 'This is body2',]
             ]
         );
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
     }
 }
