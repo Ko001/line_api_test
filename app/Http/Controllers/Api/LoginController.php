@@ -23,6 +23,7 @@ class LoginController extends Controller
             \Auth::logout();
         }
         $linkToken = $request->get("linkToken");
+        dd($linkToken);
 
         return view("auth.login", [
             "linkToken" => $linkToken

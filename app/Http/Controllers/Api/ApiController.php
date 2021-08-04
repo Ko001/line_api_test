@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\User;
 
 
 class ApiController extends Controller
@@ -15,10 +19,10 @@ class ApiController extends Controller
     public function webhook(Request $request){
         \Log::info(print_r($request->all(), true));
         $events = $request->get("events", []);
-        $userId = array_get($events, "0.source.userId");
-        $text = array_get($events, "0.message.text");
-        $replayToken = array_get($events, "0.replyToken");
-        if(array_get($events, "0.link.result") === "ok"){
+        $userId = \Arr::get($events, "0.source.userId");
+        $text = \Arr::get($events, "0.message.text");
+        $replayToken = \Arr::get($events, "0.replyToken");
+        if(\Arr::get($events, "0.link.result") === "ok"){
             $this->saveAccount($events);
 
             $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(config("auth.line-api-key"));
@@ -105,8 +109,8 @@ class ApiController extends Controller
      * @param array $events
      */
     private function saveAccount(array $events){
-        $uuid = array_get($events, "0.source.userId");
-        $nonce = array_get($events, "0.link.nonce");
+        $uuid = \Arr::get($events, "0.source.userId");
+        $nonce = \Arr::get($events, "0.link.nonce");
         $user = User::query()->where("nonce", $nonce)->first();
         if(is_null($user)){
             return;
