@@ -33,5 +33,5 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/webhook','ApiController@webhook');
-Route::get("api/login","Api\LoginController@showLoginForm")->name("api.login");
+Route::get("api/login", "Api\LoginController@showLoginForm")->name("api.login");
 Route::post("api/login", "Api\LoginController@login");
